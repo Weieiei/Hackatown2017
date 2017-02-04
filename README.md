@@ -1,6 +1,6 @@
 # hackatown
 
-> A place to post your shitty stores
+> A place to post your shitty stories
 
 ## Build Setup
 
