@@ -14,7 +14,7 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/submit'
+      path: '/submit',
       name: 'SubmitPage',
       component: SubmitPage
     },
