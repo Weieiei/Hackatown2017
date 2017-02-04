@@ -19,7 +19,7 @@ export default new Router({
       component: SubmitPage
     },
     {
-      path: 'reply',
+      path: '/reply',
       name: 'ReplyPage',
       component: ReplyPage
     }
