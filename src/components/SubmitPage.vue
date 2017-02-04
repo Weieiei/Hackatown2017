@@ -6,11 +6,6 @@
 
 <script>
 export default {
-  name: 'message',
-  data () {
-    return {
-      msg: 'mm'
-    }
-  }
+  name: 'SubmitPage'
 }
 </script>
