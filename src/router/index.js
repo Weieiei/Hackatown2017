@@ -11,17 +11,17 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello
+      component: Rello
     },
     {
-      path: '/submit'
-      name: 'SubmitPage',
-      component: SubmitPage
-    },
-    {
-      path: 'reply',
+      path: '/reply',
       name: 'ReplyPage',
       component: ReplyPage
+    },
+    {
+      path: '/reply',
+      name: 'SubmitPage',
+      component: SubmitPage
     }
   ]
 })
