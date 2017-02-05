@@ -168,7 +168,6 @@ export default {
       alert('Merci pour votre support! Thank you for supporting ' + this.username + '!')
       writeNewPost(this.username, this.message, this.hasSwearingRep)
       this.username = null
-      // this. = null
       this.replyFeeling = null
       this.message2 = this.message
       this.message = null
@@ -187,9 +186,7 @@ export default {
     },
     grabCommento: function () {
       var self = this
-      grabComment(function (x) { self.replyFeeling = x.feeling })
-      grabComment(function (x) { self.otherStory = x.story })
-      grabComment(function (x) { self.username = x.name })
+      grabComment(function (x) { self.replyFeeling = x.feeling }, function (x) { self.username = x.name }, function (x) { self.otherStory = x.story })
     }
   }
 }

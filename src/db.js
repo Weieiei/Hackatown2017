@@ -53,7 +53,7 @@ function makeMeAnew (firstName, feeling, story, email, hasSwearing, dangerFlag) 
 }
 
 // Grabs random story and sends payload via callback function
-function grabComment (callback) {
+function grabComment (callback, callback2, callback3) {
   return firebase.database().ref('stories/').once('value').then(function (snapshot) {
     // Grab all stories, pick rand
     var i = 0
@@ -61,12 +61,14 @@ function grabComment (callback) {
     snapshot.forEach(function (snapshot) {
       if (i === rand) {
         var payload = {story_key: snapshot.key,
-          name: snapshot.val().firstName,
+          name: snapshot.val().name,
           feeling: snapshot.val().feeling,
           story: snapshot.val().story,
           email: snapshot.val().email
         }
         callback(payload)
+        callback2(payload)
+        callback3(payload)
       }
       i++
     })
