@@ -171,6 +171,7 @@ export default {
       this.replyFeeling = null
       this.message2 = this.message
       this.message = null
+      this.otherStory = null
     },
     clearAll: function () {
       console.log(this)
