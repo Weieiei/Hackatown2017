@@ -11,21 +11,68 @@ const config = {
 firebase.initializeApp(config)
 const db = firebase.database()
 
-function writeNewPost (name, niceMessage) {
-  // A post entry.
+// Makes a new reply to a specified story
+function writeNewPost (destinationKey, niceMessage) {
+  // Data of the reply
   var postData = {
-    name: name,
+    destinationKey: destinationKey,
     niceMessage: niceMessage
   }
 
-  // Get a key for a new Post.
+  // Get key for the reply
   var newPostKey = db.ref().child('niceMessages').push().key
 
-  // Write the new post's data simultaneously in the posts list and the user's post list.
+  // Categorize reply under key of the original story author
   var updates = {}
-  updates['/niceMessages/' + newPostKey] = postData
-  updates['/people-niceMessages/' + name + '/' + newPostKey] = postData
+  updates['/replies/' + destinationKey + '/' + newPostKey] = postData
+
+  db.ref().update
 
   return db.ref().update(updates)
 }
-export { writeNewPost }
+
+// Makes a new story
+function makeMeAnew (firstName, feeling, story, email){
+  // The data juice needed to make a new story
+  var storyData = {
+    name: firstName,
+    feeling: feeling,
+    story: story,
+    email: email
+  }
+
+  // Get new story key
+  var newStoryKey = db.ref().child('niceMessages').push().key
+
+  // Update story
+  var updates = {}
+  updates['/stories/' + newStoryKey] = storyData
+
+  return db.ref().update(updates)
+}
+
+// Grabs random key
+function grabComment (){
+  // Grab all stories, pick rand
+  var i = 0;
+  var rand = Math.floor(Math.random() * snapshot.numChildren());
+  snapshot.forEach(function(snapshot) {
+    if (i == rand) {
+      story_key = snapshot.key
+    }
+    i++;
+  });
+
+  // Grab the data from the correct key
+  return firebase.database().ref('stories/' + story_key).once('value').then(function(snapshot) {
+    var payload = {story_key: story_key
+      name: snapshot.val().firstName,
+      feeling: snapshot.val().feeling,
+      story: snapshot.val().story,
+      email: snapshot.val().email
+    }
+    return payload
+  });
+}
+
+export { writeNewPost, makeMeAnew, grabComment }
