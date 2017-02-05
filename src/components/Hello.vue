@@ -1,14 +1,25 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <md-button class="md-raised md-primary">Primary</md-button>
-    <div>{{message}}</div>
+    <md-tabs md-fixed>
+      <md-tab id="submitpage" md-label="submitpage">
+        <submit-page></submit-page>
+      </md-tab>
+      <md-tab id="replypage" md-label="replypage">
+        <reply-page></reply-page>
+      </md-tab>
+    </md-tabs>
   </div>
 </template>
 
 <script>
+import ReplyPage from './ReplyPage'
+import SubmitPage from './SubmitPage'
 export default {
   name: 'hello',
+  components: {
+    ReplyPage,
+    SubmitPage
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

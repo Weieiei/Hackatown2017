@@ -4,13 +4,13 @@
       <md-card>
         <md-card-header>
           <h2 class="md-title">pplofmontreal.com</h2>
-          <md-button class="md-raised md-primary" id="back">Back</md-button>
+          <md-button class="md-raised md-primary" id="back"><a href="#/stm">Back</a></md-button>
         </md-card-header>
         <md-card-content>
         </md-card-content>
         <md-card-content>
-          <span class="md-display-1">{{username}} is feeling {{feeling}} </span>
-          <span class="md-display-1"> because {{message}}</span>
+          <span class="md-display-1">{{fname}} is feeling {{feelings}} </span>
+          <span class="md-display-1"> because {{story}}</span>
         </md-card-content>
         <md-card-content>
         </md-card-content>
@@ -32,20 +32,23 @@
         </md-card-content>
       </md-card>
     </md-whiteframe>
-    <input v-model="username"/>
-    <input v-model="feeling"/>
   </div>
 </template>
 
 <script>
-import { writeNewPost, grabComment } from '../db'
+import { writeNewPost } from '../db'
+import firebase from 'firebase'
 export default {
   name: 'ReplyPage',
+  firebase: {
+    stories: firebase.database().ref('stories/-KcBNUi3ojdTFeC7OSJP')
+  },
   data () {
     return {
       username: '',
       feeling: '',
-      message: grabComment()
+      message: '',
+      latestSnapshot: null
     }
   },
   computed: {
@@ -62,8 +65,13 @@ export default {
     validateInput: function () {
       writeNewPost(this.username, this.message, this.hasSwearing)
       this.username = null
-      this.message = null
+      // this.message = null
       this.feeling = null
+    },
+    grabComment: function () {
+      firebase.database().ref('stories/').once('value', function (snap) { this.latestSnapshot = snap })
+        // Grab all stories, pick rand
+      return this.latestSnapshot.story
     }
   }
 }
