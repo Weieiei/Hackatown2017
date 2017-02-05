@@ -10,42 +10,49 @@
 
   </md-card-header>
 
-
-
   <md-card-content>
-    <form novalidate @submit.stop.prevent="submit">
+    <form v-on:submit.prevent="validateInput">
       <md-input-container>
         <label>First Name</label>
-        <md-input v-model="FirstName"></md-input>
+        <md-input v-model="firstName" required></md-input>
       </md-input-container>
 
       <md-input-container>
         <label>Email</label>
-        <md-input placeholder="Email"></md-input>
+        <md-input placeholder="Email" v-model="email" required></md-input>
       </md-input-container>
 
       <md-input-container>
         <label>How are you feeling today?</label>
-        <md-textarea></md-textarea>
+        <md-textarea v-model="feeling" required ></md-textarea>
       </md-input-container>
 
       <md-input-container>
         <label>Because...</label>
-        <md-textarea></md-textarea>
+        <md-textarea v-model="story" required></md-textarea>
       </md-input-container>
 
-
+<md-button type="submit" class="md-raised md-primary" v-on:click="thanks">Submit</md-button>
   </md-card-content>
 </md-card>
-
-
-
-
 </template>
 
-<script>
+<script> // import { makeMeAnew } from '../db'
 export default {
-  name: 'SubmitPage'
+  name: 'SubmitPage',
+  data () {
+    return {
+      firstName: null,
+      feeling: null,
+      story: null,
+      email: null
+    }
+  },
+  methods: {
+    thanks: function () {
+      alert('Have a nice day ' + this.firstName + ' who is feeling ' + this.feeling + ' because of ' + this.story)
+    }
+  }
 }
 </script>
 <style>

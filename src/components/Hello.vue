@@ -2,7 +2,6 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <md-button class="md-raised md-primary">Primary</md-button>
-    <input v-model="message">
     <div>{{message}}</div>
   </div>
 </template>

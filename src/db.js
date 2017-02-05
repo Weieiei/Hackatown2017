@@ -11,12 +11,12 @@ const config = {
 firebase.initializeApp(config)
 const db = firebase.database()
 
-// Makes a new reply to a specified story
-function writeNewPost (destinationKey, niceMessage) {
-  // Data of the reply
+function writeNewPost (destinationKey, niceMessage, swearing) {
+  // A post entry.
   var postData = {
     destinationKey: destinationKey,
-    niceMessage: niceMessage
+    niceMessage: niceMessage,
+    swearing: swearing
   }
 
   // Get key for the reply
