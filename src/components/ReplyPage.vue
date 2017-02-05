@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { writeNewPost } from '../db'
+import { writeNewPost } from '../db' // updated lol
 export default {
   name: 'ReplyPage',
   data () {
