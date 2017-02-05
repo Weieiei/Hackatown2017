@@ -32,12 +32,14 @@
         <md-textarea v-model="story" required></md-textarea>
       </md-input-container>
 
-<md-button type="submit" class="md-raised md-primary" v-on:click="thanks">Submit</md-button>
+      <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+    </form>
   </md-card-content>
 </md-card>
 </template>
 
-<script> // import { makeMeAnew } from '../db'
+<script>
+// import { makeMeAnew } from '../db'
 export default {
   name: 'SubmitPage',
   data () {
@@ -48,9 +50,25 @@ export default {
       email: null
     }
   },
+  computed: {
+    hasNoSwearing: function () {
+      let bannedWords = ['fuck', 'bitch', 'whore', 'shit', 'cunt', 'bastard', 'tabarnak', 'merde', 'cawliss']
+      if (new RegExp(bannedWords.join('|')).test(this.firstName.toLowerCase()) || new RegExp(bannedWords.join('|')).test(this.feeling.toLowerCase()) || new RegExp(bannedWords.join('|')).test(this.story.toLowerCase())) {
+        return false
+      } else {
+        return true
+      }
+    }
+  },
   methods: {
-    thanks: function () {
-      alert('Have a nice day ' + this.firstName + ' who is feeling ' + this.feeling + ' because of ' + this.story)
+    validateInput: function () {
+      if (this.hasNoSwearing) {
+        alert('no swearing')
+        // writeNewPost(this.username, this.message, false)
+      } else {
+        alert('swearing!')
+        // writeNewPost(this.username, this.message, true)
+      }
     }
   }
 }

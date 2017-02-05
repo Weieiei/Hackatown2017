@@ -20,7 +20,7 @@
         <md-card-content>
         </md-card-content>
         <md-card-content>
-          <form novalidate @submit.stop.prevent="submit">
+          <form novalidate @submit.stop.prevent="validateInput">
             <div>Support them!</div>
             <md-input-container>
               <label>Support them!</label>
