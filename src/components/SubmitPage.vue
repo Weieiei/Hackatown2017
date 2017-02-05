@@ -5,14 +5,15 @@
           <md-whiteframe md-elevation="3" id="frame">
             <div>
               <md-card-header>
-                <div class="md-title">Hi.</div>
-                <div class="md-title">How are you?</div>
+                <div class="md-title">Bonjour / Hi.</div>
+                <div class="md-title">Comment ça va? / How are you?</div>
+                <md-button class="md-raised md-primary" id="back"><a href="#/stm">Carte/Routes</a></md-button>
               </md-card-header>
 
               <md-card-content>
                 <form v-on:submit.prevent="validateInput">
                   <md-input-container>
-                    <label class="words">First Name</label>
+                    <label class="words">Nom / First Name</label>
                     <md-input v-model="firstName" required></md-input>
                   </md-input-container>
 
@@ -22,17 +23,17 @@
                   </md-input-container>
 
                   <md-input-container>
-                    <label class="words">How are you feeling today?</label>
+                    <label class="words">Comment allez-vous? / How are you feeling today?</label>
                     <md-textarea v-model="feeling" required ></md-textarea>
                   </md-input-container>
 
                   <md-input-container>
-                    <label class="words">Because...</label>
+                    <label class="words">Parce que ... / Because...</label>
                     <md-textarea v-model="story" required></md-textarea>
                   </md-input-container>
 
-                  <md-button type="submit" class="md-raised md-primary">Submit</md-button>
-                  <md-button class="md-raised md-primary" v-on:click="clearAll">Clear All</md-button>
+                  <md-button type="submit" class="md-raised md-primary">Soumettre / Submit</md-button>
+                  <md-button class="md-raised md-primary" v-on:click="clearAll">Effacer / Clear All</md-button>
                 </form>
               </div>
             </md-card-content>
@@ -41,7 +42,7 @@
         </md-card>
         <md-card>
           <md-card-content>
-            <span class="md-display-2">{{ this.message2 == null ? "" : "Somebody replied!" }}</span>
+            <span class="md-display-2">{{ this.message2 == null ? "" : "Quelqu'un a répondu! Somebody replied!" }}</span>
             <md-card-content>
             </md-card-content>
           </md-card-content>
@@ -57,13 +58,14 @@
           <md-card>
             <md-card-header>
               <h2 class="md-title">pplofmontreal.com</h2>
-              <md-button class="md-raised md-primary" id="back"><a href="#/stm">Back</a></md-button>
+              <md-button class="md-raised md-primary" id="back"><a href="#/stm">Carte/Routes</a></md-button>
             </md-card-header>
             <md-card-content>
             </md-card-content>
             <md-card-content>
-              <span class="md-display-1">{{username}} is feeling {{replyFeeling}} </span>
-              <span class="md-display-1"> because {{otherStory}}</span>
+              <span class="md-display-1">{{username}} sent / is feeling</span>
+              <span class="md-display-1" id="bold">{{replyFeeling}} </span>
+              <span class="md-display-1"> parce que / because {{otherStory}}</span>
             </md-card-content>
             <md-card-content>
             </md-card-content>
@@ -75,12 +77,12 @@
             </md-card-content>
             <md-card-content>
               <form novalidate @submit.stop.prevent="validateInputRep">
-                <div>Support them!</div>
+                <div>Encouragez-les / Support them!</div>
                 <md-input-container>
                   <label>Support them!</label>
                   <md-input v-model="message"></md-input>
                 </md-input-container>
-                <md-button class="md-raised md-primary" type="submit">Submit</md-button>
+                <md-button class="md-raised md-primary" type="submit">Soumettre / Submit</md-button>
               </form>
             </md-card-content>
           </md-card>
@@ -142,9 +144,9 @@ export default {
     validateInput: function () {
       makeMeAnew(this.firstName, this.feeling, this.story, this.email, this.hasSwearing, this.dangerFlag)
       if (this.dangerFlag) {
-        alert('This seems serious. You should call 514-723-4000')
+        alert('Ceci est un problème sérieux. This seems serious. Appel / call 514-723-4000')
       } else if (!this.hasSwearing) {
-        alert('Have a nice day! Please press Clear All when you receive a message of support.')
+        alert('Bonne journée! Have a nice day! Appuyez Effacer dès que vous recevez un message. Please press Clear All when you receive a message of support.')
       }
       if (!this.hasSwearing) {
         this.username = this.firstName
@@ -156,11 +158,11 @@ export default {
         this.feeling = null
         this.story = null
         this.email = null
-        alert('Have a nice day :)')
+        alert('Bonne journée / Have a nice day :)')
       }
     },
     validateInputRep: function () {
-      alert('Thank you for supporting ' + this.username + '!')
+      alert('Merci pour votre support! Thank you for supporting ' + this.username + '!')
       writeNewPost(this.username, this.message, this.hasSwearingRep)
       this.username = null
       // this. = null
@@ -169,6 +171,7 @@ export default {
       this.message = null
     },
     clearAll: function () {
+      console.log(this)
       this.firstName = null
       this.feeling = null
       this.story = null
@@ -190,8 +193,10 @@ background-color: lightblue;
 
 .md-primary{
   background-image: url("https://evolvetours.com/wp-content/uploads/2016/11/montreal-canada-1050x6991.jpg");
+}
 
-
+#bold{
+  font-weight: bold !important;
 }
 
 #frame{
