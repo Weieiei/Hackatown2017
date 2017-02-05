@@ -26,7 +26,7 @@
               <label>Support them!</label>
               <md-input v-model="message"></md-input>
             </md-input-container>
-            <md-button class="md-raised md-primary" v-on:click="greet">Primary</md-button>
+            <md-button class="md-raised md-primary" type="submit">Primary</md-button>
           </form>
         </md-card-content>
       </md-card>
@@ -47,11 +47,23 @@ export default {
       message: null
     }
   },
+  computed: {
+    hasNoSwearing: function () {
+      let bannedWords = ['fuck', 'bitch', 'whore', 'shit', 'cunt', 'bastard', 'tabarnak', 'merde', 'cawliss']
+      if (new RegExp(bannedWords.join('|')).test(this.message.toLowerCase()) || new RegExp(bannedWords.join('|')).test(this.feeling.toLowerCase())) {
+        return false
+      } else {
+        return true
+      }
+    }
+  },
   methods: {
-    greet: function () {
-      alert('Thanks for stuff')
-      writeNewPost(this.username,
-        this.message)
+    submit: function () {
+      if (this.hasNoSwearing) {
+        writeNewPost(this.username, this.message, false)
+      } else {
+        writeNewPost(this.username, this.message, true)
+      }
     }
   }
 }

@@ -11,11 +11,12 @@ const config = {
 firebase.initializeApp(config)
 const db = firebase.database()
 
-function writeNewPost (name, niceMessage) {
+function writeNewPost (name, niceMessage, swearing) {
   // A post entry.
   var postData = {
     name: name,
-    niceMessage: niceMessage
+    niceMessage: niceMessage,
+    swearing: swearing
   }
 
   // Get a key for a new Post.
