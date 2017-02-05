@@ -20,7 +20,7 @@
         <md-card-content>
         </md-card-content>
         <md-card-content>
-          <form novalidate @submit.stop.prevent="submit">
+          <form novalidate @submit.stop.prevent="validateInput">
             <div>Support them!</div>
             <md-input-container>
               <label>Support them!</label>
@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import { writeNewPost } from '../db'
+import { writeNewPost } from '../db' // updated lol
 export default {
   name: 'ReplyPage',
   data () {
     return {
-      username: 'Amanda',
-      feeling: 'Ok',
+      username: '',
+      feeling: '',
       message: null
     }
   },
@@ -58,12 +58,15 @@ export default {
     }
   },
   methods: {
-    submit: function () {
+    validateInput: function () {
       if (this.hasNoSwearing) {
         writeNewPost(this.username, this.message, false)
       } else {
         writeNewPost(this.username, this.message, true)
       }
+      this.username = null
+      this.message = null
+      this.feeling = null
     }
   }
 }

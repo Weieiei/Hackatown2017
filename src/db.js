@@ -32,7 +32,7 @@ function writeNewPost (destinationKey, niceMessage, swearing) {
 }
 
 // Makes a new story
-function makeMeAnew (firstName, feeling, story, email){
+function makeMeAnew (firstName, feeling, story, email) {
   // The data juice needed to make a new story
   var storyData = {
     name: firstName,
@@ -52,27 +52,25 @@ function makeMeAnew (firstName, feeling, story, email){
 }
 
 // Grabs random key
-function grabComment (){
-  // Grab all stories, pick rand
-  var i = 0;
-  var rand = Math.floor(Math.random() * snapshot.numChildren());
-  snapshot.forEach(function(snapshot) {
-    if (i == rand) {
-      story_key = snapshot.key
-    }
-    i++;
-  });
-
-  // Grab the data from the correct key
-  return firebase.database().ref('stories/' + story_key).once('value').then(function(snapshot) {
-    var payload = {story_key: story_key
-      name: snapshot.val().firstName,
-      feeling: snapshot.val().feeling,
-      story: snapshot.val().story,
-      email: snapshot.val().email
-    }
-    return payload
-  });
+function grabComment () {
+  return firebase.database().ref('stories/').once('value').then(function (snapshot) {
+    // Grab all stories, pick rand
+    var i = 0
+    var rand = Math.floor(Math.random() * snapshot.numChildren())
+    snapshot.forEach(function (snapshot) {
+      if (i === rand) {
+        var payload = {story_key: snapshot.key,
+          name: snapshot.val().firstName,
+          feeling: snapshot.val().feeling,
+          story: snapshot.val().story,
+          email: snapshot.val().email
+        }
+        return payload
+      }
+      i++
+    })
+  }
+  )
 }
 
 export { writeNewPost, makeMeAnew, grabComment }
