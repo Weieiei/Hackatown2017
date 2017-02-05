@@ -41,12 +41,12 @@
         </md-card>
         <md-card>
           <md-card-content>
-            <span class="md-display-2">{{ this.message == null ? "" : "Somebody replied!" }}</span>
+            <span class="md-display-2">{{ this.message2 == null ? "" : "Somebody replied!" }}</span>
             <md-card-content>
             </md-card-content>
           </md-card-content>
           <md-card-content>
-            <span class="md-display-1">{{ this.message == null ? "" : this.message}}</span>
+            <span class="md-display-1">{{ this.message2 == null ? "" : this.message2}}</span>
           </md-card-content>
         <md-card>
       </md-card>
@@ -108,7 +108,8 @@ export default {
       username: '',
       replyFeeling: '',
       otherStory: '',
-      message: null
+      message: null,
+      message2: null
     }
   },
   computed: {
@@ -121,8 +122,8 @@ export default {
       }
     },
     dangerFlag: function () {
-      let dangerWords = ['suicide', 'bully', 'rape', 'abuse', 'kill', 'die', 'shoot', 'gun', 'murder', 'danger']
-      if (new RegExp(dangerWords.join('|')).test(this.story.toLowerCase())) {
+      let dangerWords = ['suicide', 'bully', 'rape', 'abuse', 'kill', 'die', 'shoot', 'gun', 'murder', 'danger', 'suicid']
+      if (new RegExp(dangerWords.join('|')).test(this.story.toLowerCase()) || new RegExp(dangerWords.join('|')).test(this.feeling.toLowerCase())) {
         return true
       } else {
         return false
@@ -164,6 +165,8 @@ export default {
       this.username = null
       // this. = null
       this.replyFeeling = null
+      this.message2 = this.message
+      this.message = null
     },
     clearAll: function () {
       this.firstName = null
@@ -174,6 +177,7 @@ export default {
       this.replyFeeling = null
       this.message = null
       this.otherStory = null
+      this.message2 = null
     }
   }
 }
