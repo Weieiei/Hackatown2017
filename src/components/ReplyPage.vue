@@ -32,6 +32,7 @@
       </md-card>
     </md-whiteframe>
     <input v-model="username"/>
+    <input v-model="feeling"/>
   </div>
 </template>
 
