@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { writeNewPost } from '../db'
 export default {
   name: 'ReplyPage',
   data () {
@@ -49,6 +50,8 @@ export default {
   methods: {
     greet: function () {
       alert('Thanks for stuff')
+      writeNewPost(this.username,
+        this.message)
     }
   }
 }
