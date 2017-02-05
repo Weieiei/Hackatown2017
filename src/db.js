@@ -19,14 +19,13 @@ function writeNewPost (destinationKey, niceMessage, swearing) {
     swearing: swearing
   }
 
-  // Get key for the reply
+  // Get a key for a new Post.
   var newPostKey = db.ref().child('niceMessages').push().key
 
-  // Categorize reply under key of the original story author
+  // Write the new post's data simultaneously in the posts list and the user's post list.
   var updates = {}
   updates['/replies/' + destinationKey + '/' + newPostKey] = postData
-
-  db.ref().update
+  // updates['/people-niceMessages/' + name + '/' + newPostKey] = postData
 
   return db.ref().update(updates)
 }
