@@ -45,32 +45,25 @@ export default {
     return {
       username: '',
       feeling: '',
-      message: grabComment().once('value').then(function (snapshot) {
-        return snapshot.val().story
-      })
+      message: grabComment()
     }
   },
   computed: {
-    hasNoSwearing: function () {
+    hasSwearing: function () {
       let bannedWords = ['fuck', 'bitch', 'whore', 'shit', 'cunt', 'bastard', 'tabarnak', 'merde', 'cawliss']
       if (new RegExp(bannedWords.join('|')).test(this.message.toLowerCase()) || new RegExp(bannedWords.join('|')).test(this.feeling.toLowerCase())) {
-        return false
-      } else {
         return true
+      } else {
+        return false
       }
     }
   },
   methods: {
     validateInput: function () {
-      if (this.hasNoSwearing) {
-        writeNewPost(this.username, this.message, false)
-      } else {
-        writeNewPost(this.username, this.message, true)
-      }
+      writeNewPost(this.username, this.message, this.hasSwearing)
       this.username = null
       this.message = null
       this.feeling = null
-      console.log(grabComment())
     }
   }
 }

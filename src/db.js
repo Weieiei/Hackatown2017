@@ -31,13 +31,15 @@ function writeNewPost (destinationKey, niceMessage, swearing) {
 }
 
 // Makes a new story
-function makeMeAnew (firstName, feeling, story, email) {
+function makeMeAnew (firstName, feeling, story, email, hasSwearing, dangerFlag) {
   // The data juice needed to make a new story
   var storyData = {
     name: firstName,
     feeling: feeling,
     story: story,
-    email: email
+    email: email,
+    hasSwearing: hasSwearing,
+    dangerFlag: dangerFlag
   }
 
   // Get new story key
@@ -64,7 +66,6 @@ function grabComment () {
           story: snapshot.val().story,
           email: snapshot.val().email
         }
-        console.log(payload)
         return payload
       }
       i++

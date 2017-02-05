@@ -15,7 +15,7 @@
 
               <md-input-container>
                 <label class="words">Email</label>
-                <md-input v-model="Email" required></md-input>
+                <md-input v-model="email" required></md-input>
               </md-input-container>
 
               <md-input-container>
@@ -49,24 +49,26 @@ export default {
     }
   },
   computed: {
-    hasNoSwearing: function () {
+    hasSwearing: function () {
       let bannedWords = ['fuck', 'bitch', 'whore', 'shit', 'cunt', 'bastard', 'tabarnak', 'merde', 'cawliss']
       if (new RegExp(bannedWords.join('|')).test(this.firstName.toLowerCase()) || new RegExp(bannedWords.join('|')).test(this.feeling.toLowerCase()) || new RegExp(bannedWords.join('|')).test(this.story.toLowerCase())) {
-        return false
-      } else {
         return true
+      } else {
+        return false
+      }
+    },
+    dangerFlag: function () {
+      let dangerWords = ['suicide', 'bully', 'rape', 'abuse', 'kill', 'die', 'shoot', 'gun', 'murder', 'danger']
+      if (new RegExp(dangerWords.join('|')).test(this.story.toLowerCase())) {
+        return true
+      } else {
+        return false
       }
     }
   },
   methods: {
     validateInput: function () {
-      if (this.hasNoSwearing) {
-        alert('no swearing')
-        makeMeAnew(this.firstName, this.feeling, this.story, this.email)
-      } else {
-        alert('swearing!')
-        makeMeAnew(this.firstName, this.feeling, this.story, this.email)
-      }
+      makeMeAnew(this.firstName, this.feeling, this.story, this.email, this.hasSwearing, this.dangerFlag)
       this.firstName = null
       this.feeling = null
       this.story = null
