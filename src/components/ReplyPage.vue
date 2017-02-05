@@ -4,6 +4,7 @@
       <md-card>
         <md-card-header>
           <h2 class="md-title">pplofmontreal.com</h2>
+          <md-button class="md-raised md-primary" id="back">Back</md-button>
         </md-card-header>
         <md-card-content>
         </md-card-content>
@@ -20,13 +21,13 @@
         <md-card-content>
         </md-card-content>
         <md-card-content>
-          <form novalidate @submit.stop.prevent="submit">
+          <form novalidate @submit.stop.prevent="validateInput">
             <div>Support them!</div>
             <md-input-container>
               <label>Support them!</label>
               <md-input v-model="message"></md-input>
             </md-input-container>
-            <md-button class="md-raised md-primary" type="submit">Primary</md-button>
+            <md-button class="md-raised md-primary" type="submit">Submit</md-button>
           </form>
         </md-card-content>
       </md-card>
@@ -42,8 +43,8 @@ export default {
   name: 'ReplyPage',
   data () {
     return {
-      username: 'Amanda',
-      feeling: 'Ok',
+      username: '',
+      feeling: '',
       message: null
     }
   },
@@ -58,19 +59,26 @@ export default {
     }
   },
   methods: {
-    submit: function () {
+    validateInput: function () {
       if (this.hasNoSwearing) {
         writeNewPost(this.username, this.message, false)
       } else {
         writeNewPost(this.username, this.message, true)
       }
+      this.username = null
+      this.message = null
+      this.feeling = null
     }
   }
 }
 </script>
 <style>
   .mainContainer{
-    padding-right: 10%;
+    padding-right: 30%;
     padding-left: 10%;
+  }
+  #back {
+    position: absolute;
+    left: 1% !important;
   }
 </style>
