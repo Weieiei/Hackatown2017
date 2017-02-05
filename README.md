@@ -1,6 +1,6 @@
-# hackatown
+# pplofmontreal.com
 
-> A place to post your shitty stories
+> Share your feelings and empathize with the rest of city
 
 ## Build Setup
 
