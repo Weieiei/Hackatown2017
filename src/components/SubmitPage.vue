@@ -34,6 +34,7 @@
         <md-textarea></md-textarea>
       </md-input-container>
 
+<md-button class="md-raised md-primary" v-on:click="thanks">Submit</md-button>
 
   </md-card-content>
 </md-card>
@@ -45,7 +46,12 @@
 
 <script>
 export default {
-  name: 'SubmitPage'
+  name: 'SubmitPage',
+  methods: {
+    thanks: function () {
+      alert('Have a nice day!')
+    }
+  }
 }
 </script>
 <style>
