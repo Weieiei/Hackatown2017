@@ -184,7 +184,7 @@ export default {
     },
     grabCommento: function () {
       var self = this
-      grabComment(function (x) { self.username = x})
+      grabComment(function (x) { self.username = x })
     }
   }
 }

@@ -52,8 +52,8 @@ function makeMeAnew (firstName, feeling, story, email, hasSwearing, dangerFlag) 
   return db.ref().update(updates)
 }
 
-// Grabs random key
-function grabComment () {
+// Grabs random story and sends payload via callback function
+function grabComment (callback) {
   return firebase.database().ref('stories/').once('value').then(function (snapshot) {
     // Grab all stories, pick rand
     var i = 0
@@ -66,7 +66,7 @@ function grabComment () {
           story: snapshot.val().story,
           email: snapshot.val().email
         }
-        return payload
+        callback(payload)
       }
       i++
     })
