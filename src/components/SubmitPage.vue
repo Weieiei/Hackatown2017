@@ -39,7 +39,7 @@
 </template>
 
 <script>
-// import { makeMeAnew } from '../db'
+import { makeMeAnew } from '../db'
 export default {
   name: 'SubmitPage',
   data () {
@@ -64,10 +64,10 @@ export default {
     validateInput: function () {
       if (this.hasNoSwearing) {
         alert('no swearing')
-        // writeNewPost(this.username, this.message, false)
+        makeMeAnew(this.firstName, this.feeling, this.story, this.email)
       } else {
         alert('swearing!')
-        // writeNewPost(this.username, this.message, true)
+        makeMeAnew(this.firstName, this.feeling, this.story, this.email)
       }
       this.firstName = null
       this.feeling = null
