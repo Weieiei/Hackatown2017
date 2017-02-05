@@ -100,6 +100,9 @@ export default {
   components: {
     ReplyPage
   },
+  created: function () {
+    this.grabCommento()
+  },
   data () {
     return {
       firstName: null,
@@ -184,7 +187,9 @@ export default {
     },
     grabCommento: function () {
       var self = this
-      grabComment(function (x) { self.username = x})
+      grabComment(function (x) { self.replyFeeling = x.feeling })
+      grabComment(function (x) { self.otherStory = x.story })
+      grabComment(function (x) { self.username = x.name })
     }
   }
 }
