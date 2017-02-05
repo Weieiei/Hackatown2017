@@ -64,7 +64,7 @@
             </md-card-content>
             <md-card-content>
               <span class="md-display-1">{{username}} sent / is feeling</span>
-              <span class="md-display-1" id="bold">{{replyFeeling}} </span>
+              <span class="md-display-1" id="bold">&nbsp;{{replyFeeling}} </span>
               <span class="md-display-1"> parce que / because {{otherStory}}</span>
             </md-card-content>
             <md-card-content>
