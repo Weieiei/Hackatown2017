@@ -4,6 +4,7 @@
       <md-card>
         <md-card-header>
           <h2 class="md-title">pplofmontreal.com</h2>
+          <md-button class="md-raised md-primary" id="back">Back</md-button>
         </md-card-header>
         <md-card-content>
         </md-card-content>
@@ -26,7 +27,7 @@
               <label>Support them!</label>
               <md-input v-model="message"></md-input>
             </md-input-container>
-            <md-button class="md-raised md-primary" type="submit">Primary</md-button>
+            <md-button class="md-raised md-primary" type="submit">Submit</md-button>
           </form>
         </md-card-content>
       </md-card>
@@ -37,7 +38,7 @@
 </template>
 
 <script>
-import { writeNewPost } from '../db' // updated lol
+import { writeNewPost } from '../db'
 export default {
   name: 'ReplyPage',
   data () {
@@ -73,7 +74,11 @@ export default {
 </script>
 <style>
   .mainContainer{
-    padding-right: 10%;
+    padding-right: 30%;
     padding-left: 10%;
+  }
+  #back {
+    position: absolute;
+    left: 1% !important;
   }
 </style>
