@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { makeMeAnew, writeNewPost } from '../db'
+import { makeMeAnew, writeNewPost, grabComment } from '../db'
 import ReplyPage from './ReplyPage'
 export default {
   name: 'SubmitPage',
@@ -181,6 +181,10 @@ export default {
       this.message = null
       this.otherStory = null
       this.message2 = null
+    },
+    grabCommento: function () {
+      var self = this
+      grabComment(function (x) { self.username = x})
     }
   }
 }
