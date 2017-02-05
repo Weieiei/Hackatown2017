@@ -38,14 +38,16 @@
 </template>
 
 <script>
-import { writeNewPost } from '../db'
+import { writeNewPost, grabComment } from '../db'
 export default {
   name: 'ReplyPage',
   data () {
     return {
       username: '',
       feeling: '',
-      message: null
+      message: grabComment().once('value').then(function (snapshot) {
+        return snapshot.val().story
+      })
     }
   },
   computed: {
@@ -68,6 +70,7 @@ export default {
       this.username = null
       this.message = null
       this.feeling = null
+      console.log(grabComment())
     }
   }
 }

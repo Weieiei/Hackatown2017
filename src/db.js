@@ -64,6 +64,7 @@ function grabComment () {
           story: snapshot.val().story,
           email: snapshot.val().email
         }
+        console.log(payload)
         return payload
       }
       i++

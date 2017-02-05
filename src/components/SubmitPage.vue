@@ -1,43 +1,39 @@
-
 <template >
+    <md-card class="md-primary">
+      <md-whiteframe md-elevation="3" id="frame">
+        <div>
+          <md-card-header>
+            <div class="md-title">Hi how are you?</div>
+          </md-card-header>
 
+          <md-card-content>
+            <form v-on:submit.prevent="validateInput">
+              <md-input-container>
+                <label class="words">First Name</label>
+                <md-input v-model="firstName" required></md-input>
+              </md-input-container>
 
-  <md-card class="md-primary">
-<md-whiteframe md-elevation="3" id="frame">
+              <md-input-container>
+                <label class="words">Email</label>
+                <md-input v-model="Email" required></md-input>
+              </md-input-container>
 
+              <md-input-container>
+                <label class="words">How are you feeling today?</label>
+                <md-textarea v-model="feeling" required ></md-textarea>
+              </md-input-container>
 
-  <md-card-header>
-    <div class="md-title">Hi how are you?</div>
+              <md-input-container>
+                <label class="words">Because...</label>
+                <md-textarea v-model="story" required></md-textarea>
+              </md-input-container>
 
-  </md-card-header>
-
-  <md-card-content>
-    <form v-on:submit.prevent="validateInput">
-      <md-input-container>
-        <label class="words">First Name</label>
-        <md-input v-model="firstName" required></md-input>
-      </md-input-container>
-
-      <md-input-container>
-        <label class="words">Email</label>
-        <md-input v-model="Email" required></md-input>
-      </md-input-container>
-
-      <md-input-container>
-        <label class="words">How are you feeling today?</label>
-        <md-textarea v-model="feeling" required ></md-textarea>
-      </md-input-container>
-
-      <md-input-container>
-        <label class="words">Because...</label>
-        <md-textarea v-model="story" required></md-textarea>
-      </md-input-container>
-
-      <md-button type="submit" class="md-raised md-primary">Submit</md-button>
-    </form>
-  </md-card-content>
-  </md-whiteframe>
-</md-card>
+              <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+            </form>
+          </div>
+        </md-card-content>
+    </md-whiteframe>
+  </md-card>
 </template>
 
 <script>
@@ -92,12 +88,12 @@ background-color: lightblue;
 }
 
 #frame{
-  background-color: rgba(105,100,100,0.7);
+  background-color: rgba(105,100,100,0.65);
   padding-left: 10%;
   padding-right:30%;
-
 }
+
 .words{
-  font: white;
+  color: white !important;
 }
 </style>
