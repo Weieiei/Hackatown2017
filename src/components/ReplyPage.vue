@@ -42,8 +42,8 @@ export default {
   name: 'ReplyPage',
   data () {
     return {
-      username: 'Amanda',
-      feeling: 'Ok',
+      username: '',
+      feeling: '',
       message: null
     }
   },
@@ -58,12 +58,15 @@ export default {
     }
   },
   methods: {
-    submit: function () {
+    validateInput: function () {
       if (this.hasNoSwearing) {
         writeNewPost(this.username, this.message, false)
       } else {
         writeNewPost(this.username, this.message, true)
       }
+      this.username = null
+      this.message = null
+      this.feeling = null
     }
   }
 }

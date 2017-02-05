@@ -19,60 +19,14 @@ function writeNewPost (destinationKey, niceMessage, swearing) {
     swearing: swearing
   }
 
-  // Get key for the reply
+  // Get a key for a new Post.
   var newPostKey = db.ref().child('niceMessages').push().key
 
-  // Categorize reply under key of the original story author
+  // Write the new post's data simultaneously in the posts list and the user's post list.
   var updates = {}
-  updates['/replies/' + destinationKey + '/' + newPostKey] = postData
-
-  db.ref().update
+  updates['/niceMessages/' + newPostKey] = postData
+  updates['/people-niceMessages/' + name + '/' + newPostKey] = postData
 
   return db.ref().update(updates)
 }
-
-// Makes a new story
-function makeMeAnew (firstName, feeling, story, email){
-  // The data juice needed to make a new story
-  var storyData = {
-    name: firstName,
-    feeling: feeling,
-    story: story,
-    email: email
-  }
-
-  // Get new story key
-  var newStoryKey = db.ref().child('niceMessages').push().key
-
-  // Update story
-  var updates = {}
-  updates['/stories/' + newStoryKey] = storyData
-
-  return db.ref().update(updates)
-}
-
-// Grabs random key
-function grabComment (){
-  // Grab all stories, pick rand
-  var i = 0;
-  var rand = Math.floor(Math.random() * snapshot.numChildren());
-  snapshot.forEach(function(snapshot) {
-    if (i == rand) {
-      story_key = snapshot.key
-    }
-    i++;
-  });
-
-  // Grab the data from the correct key
-  return firebase.database().ref('stories/' + story_key).once('value').then(function(snapshot) {
-    var payload = {story_key: story_key
-      name: snapshot.val().firstName,
-      feeling: snapshot.val().feeling,
-      story: snapshot.val().story,
-      email: snapshot.val().email
-    }
-    return payload
-  });
-}
-
-export { writeNewPost, makeMeAnew, grabComment }
+export { writeNewPost }

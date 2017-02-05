@@ -69,6 +69,10 @@ export default {
         alert('swearing!')
         // writeNewPost(this.username, this.message, true)
       }
+      this.firstName = null
+      this.feeling = null
+      this.story = null
+      this.email = null
     }
   }
 }
